@@ -1,0 +1,4 @@
+[gn_args]
+use_blink = true
+cppgc_enable_caged_heap = false
+v8_enable_pointer_compression = false

@@ -26,6 +26,12 @@ jobs:
         echo "${{ github.workspace }}/depot_tools" >> $GITHUB_PATH
     - name: Fetch iOS code
       working-directory: ${{ github.workspace }}/chromium
-      run: fetch ios
+      run: fetch --no-history ios
+    - name: Set up the build
+      working-directory: ${{ github.workspace }}/chromium/src
+      run: python ios/build/tools/setup-gn.py
+    - name: Copy .setup-gn
+      run: cp ./src/* ./chromium/src/
     - name: Build Chromium
+      working-directory: ${{ github.workspace }}/chromium/src
       run: autoninja -C out/Debug-iphonesimulator gn_all
