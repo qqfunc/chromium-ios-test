@@ -43,3 +43,5 @@ jobs:
       run: autoninja -C out/Debug-iphonesimulator gn_all
       env:
         SCCACHE_GHA_ENABLED: "true"
+        CCACHE_BASEDIR: ${{ github.workspace }}/chromium
+        CCACHE_SLOPPINESS: time_macros
