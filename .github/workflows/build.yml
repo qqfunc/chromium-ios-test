@@ -36,4 +36,4 @@ jobs:
       run: cp -r ./src ./chromium/src
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
-      run: autoninja -C out/Debug-iphonesimulator cwv_web_view
+      run: autoninja -C out/Debug-iphonesimulator gn_all
