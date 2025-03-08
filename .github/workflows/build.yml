@@ -20,6 +20,8 @@ jobs:
     steps:
     - name: Checkout ${{ github.repository }}
       uses: actions/checkout@v4.2.2
+    - name: Select Xcode version
+      run: sudo xcode-select -s '/Applications/Xcode_16.2.app/Contents/Developer'
     - name: Install depot_tools
       run: |
         git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
@@ -34,4 +36,4 @@ jobs:
       run: cp ./src/* ./chromium/src/
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
-      run: autoninja -C out/Debug-iphonesimulator gn_all
+      run: autoninja -C out/Debug-iphonesimulator cwv_web_view
