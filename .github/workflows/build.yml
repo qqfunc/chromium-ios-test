@@ -33,7 +33,7 @@ jobs:
       working-directory: ${{ github.workspace }}/chromium/src
       run: python ios/build/tools/setup-gn.py
     - name: Copy .setup-gn
-      run: cp ./src/* ./chromium/src/
+      run: cp ./src ./chromium/src
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
       run: autoninja -C out/Debug-iphonesimulator cwv_web_view
