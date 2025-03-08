@@ -1,5 +1,7 @@
 [gn_args]
+is_debug = false
+symbol_level = 0
+cc_wrapper = "sccache"
 use_blink = true
 cppgc_enable_caged_heap = false
 v8_enable_pointer_compression = false
-cc_wrapper = "sccache"
