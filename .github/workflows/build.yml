@@ -40,7 +40,7 @@ jobs:
       run: cp -r ./src ./chromium/src
     - name: Show Targets
       working-directory: ${{ github.workspace }}/chromium/src
-      run: gn ls out/Release-iphoneos
+      run: xcodebuild -workspace build/all.ninja.xcworkspace -list
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
       run: autoninja -C out/Release-iphoneos gn_all
