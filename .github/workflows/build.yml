@@ -41,6 +41,9 @@ jobs:
     - name: Set up the build
       working-directory: ${{ github.workspace }}/chromium/src
       run: python ios/build/tools/setup-gn.py
+    - name: Show files
+      working-directory: ${{ github.workspace }}/chromium/src
+      run: ls out/build
     - name: Show Targets
       working-directory: ${{ github.workspace }}/chromium/src
       run: xcodebuild -workspace out/build/all.ninja.xcworkspace -list
