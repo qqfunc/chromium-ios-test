@@ -46,7 +46,7 @@ jobs:
       run: ls out/build
     - name: Show Targets
       working-directory: ${{ github.workspace }}/chromium/src
-      run: xcodebuild -workspace out/build/all.ninja.xcworkspace -list
+      run: xcodebuild -list -project out/build/all.xcodeproj
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
       run: autoninja -C out/Release-iphoneos gn_all
