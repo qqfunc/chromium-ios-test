@@ -49,7 +49,7 @@ jobs:
       run: xcodebuild -list -project out/build/all.xcodeproj
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
-      run: autoninja -C out/Debug-iphoneos web_view_signed_bundle
+      run: autoninja -C out/Release-iphoneos web_view_signed_bundle
       env:
         SCCACHE_GHA_ENABLED: "true"
         CCACHE_BASEDIR: ${{ github.workspace }}/chromium
