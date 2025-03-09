@@ -33,14 +33,14 @@ jobs:
     - name: Fetch iOS code
       working-directory: ${{ github.workspace }}/chromium
       run: fetch --no-history ios
+    - name: Copy .setup-gn
+      run: cp -r ./src/.setup-gn ./chromium/
     - name: Show help for setup-gn.py
       working-directory: ${{ github.workspace }}/chromium/src
       run: python ios/build/tools/setup-gn.py --help
     - name: Set up the build
       working-directory: ${{ github.workspace }}/chromium/src
       run: python ios/build/tools/setup-gn.py
-    - name: Copy .setup-gn
-      run: cp -r ./src ./chromium/src
     - name: Show files
       run: |
         echo root:
