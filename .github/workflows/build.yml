@@ -26,8 +26,6 @@ jobs:
       run: xcodebuild -downloadPlatform iOS -buildVersion 18.2
     - name: Install sccache
       uses: mozilla-actions/sccache-action@v0.0.8
-    - name: Enable eccache
-      run: echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
     - name: Install depot_tools
       run: |
         git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
@@ -40,9 +38,11 @@ jobs:
       run: python ios/build/tools/setup-gn.py
     - name: Copy .setup-gn
       run: cp -r ./src ./chromium/src
+    - name: Show Targets
+      run: ninja -t targets all
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
-      run: autoninja -C out/Debug-iphonesimulator gn_all
+      run: autoninja -C out/Release-iphoneos gn_all
       env:
         SCCACHE_GHA_ENABLED: "true"
         CCACHE_BASEDIR: ${{ github.workspace }}/chromium
