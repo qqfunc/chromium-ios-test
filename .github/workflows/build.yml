@@ -41,18 +41,9 @@ jobs:
     - name: Set up the build
       working-directory: ${{ github.workspace }}/chromium/src
       run: python ios/build/tools/setup-gn.py
-    - name: Show files
-      working-directory: ${{ github.workspace }}/chromium/src
-      run: |
-        echo root:
-        ls
-        echo build:
-        ls ./build
-        echo out:
-        ls ./out
     - name: Show Targets
       working-directory: ${{ github.workspace }}/chromium/src
-      run: xcodebuild -workspace build/all.ninja.xcworkspace -list
+      run: xcodebuild -workspace out/build/all.ninja.xcworkspace -list
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
       run: autoninja -C out/Release-iphoneos gn_all
