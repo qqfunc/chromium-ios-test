@@ -39,7 +39,7 @@ jobs:
     - name: Copy .setup-gn
       run: cp -r ./src ./chromium/src
     - name: Show Targets
-      run: ninja -t targets all
+      run: autoninja -t targets all
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
       run: autoninja -C out/Release-iphoneos gn_all
