@@ -39,6 +39,7 @@ jobs:
     - name: Copy .setup-gn
       run: cp -r ./src ./chromium/src
     - name: Show Targets
+      working-directory: ${{ github.workspace }}/chromium/src
       run: gn ls out/Release-iphoneos
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
