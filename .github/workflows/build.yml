@@ -43,11 +43,11 @@ jobs:
       run: cp -r ./src ./chromium/src
     - name: Show files
       run: |
-        echo <root>
+        echo root:
         ls
-        echo <build>
+        echo build:
         ls ./build
-        echo <out>
+        echo out:
         ls ./out
     - name: Show Targets
       working-directory: ${{ github.workspace }}/chromium/src
