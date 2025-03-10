@@ -39,7 +39,7 @@ jobs:
       working-directory: ${{ github.workspace }}/chromium/src
       run: python ios/build/tools/setup-gn.py
     - name: Archive the configured source
-      run: 7zz a -mx9 -t7z -x"!.*" chromium.7z chromium
+      run: 7zz a -mx9 -t7z chromium.7z chromium
     - name: Upload source artifact
       uses: actions/upload-artifact@v4.6.1
       with:
