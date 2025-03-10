@@ -20,8 +20,6 @@ jobs:
     steps:
     - name: Checkout ${{ github.repository }}
       uses: actions/checkout@v4.2.2
-    - name: Check 7zip
-      run: which 7z
     - name: Select Xcode version
       run: sudo xcode-select -s '/Applications/Xcode_16.2.app/Contents/Developer'
     - name: Install iOS platforms
