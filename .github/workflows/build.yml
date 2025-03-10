@@ -22,6 +22,10 @@ jobs:
       uses: actions/checkout@v4.2.2
     - name: Select Xcode version
       run: sudo xcode-select -s '/Applications/Xcode_16.2.app/Contents/Developer'
+    - name: Install iOS platforms
+      run: xcodebuild -downloadPlatform iOS -buildVersion 18.2
+    - name: Install sccache
+      uses: mozilla-actions/sccache-action@v0.0.8
     - name: Install depot_tools
       run: |
         git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
@@ -29,11 +33,24 @@ jobs:
     - name: Fetch iOS code
       working-directory: ${{ github.workspace }}/chromium
       run: fetch --no-history ios
+    - name: Copy .setup-gn
+      run: cp -r ./src/.setup-gn ./chromium/
     - name: Set up the build
       working-directory: ${{ github.workspace }}/chromium/src
       run: python ios/build/tools/setup-gn.py
-    - name: Copy .setup-gn
-      run: cp -r ./src ./chromium/src
+    - name: Archive the configured source
+      run: 7z a -mx9 -t7z chromium.7z chromium
+    - name: Upload source artifact
+      uses: actions/upload-artifact@v4.6.1
+      with:
+        name: chromium
+        path: chromium.7z
+        retention-days: 1
+        compression-level: 0
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
-      run: autoninja -C out/Debug-iphonesimulator gn_all
+      run: autoninja -C out/Release-iphoneos web_view_signed_bundle
+      env:
+        SCCACHE_GHA_ENABLED: "true"
+        CCACHE_BASEDIR: ${{ github.workspace }}/chromium
+        CCACHE_SLOPPINESS: time_macros
