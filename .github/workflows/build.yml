@@ -54,7 +54,7 @@ jobs:
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ChromeWebView-${{ matrix.target }}
-        path: ChromeWebView.framework
+        path: ${{ github.workspace }}/chromium/src/out/Release-${{ matrix.target }}/ChromeWebView.framework
         if-no-files-found: error
         retention-days: 1
         compression-level: 0
