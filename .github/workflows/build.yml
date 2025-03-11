@@ -50,6 +50,7 @@ jobs:
         CCACHE_BASEDIR: ${{ github.workspace }}/chromium
         CCACHE_DIR: ${{ github.workspace }}/.ccache
         CCACHE_SLOPPINESS: time_macros
+      timeout-minutes: 300
     - name: Upload build artifact
       uses: actions/upload-artifact@v4.6.1
       with:
