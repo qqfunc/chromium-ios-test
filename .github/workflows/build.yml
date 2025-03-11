@@ -13,6 +13,9 @@ jobs:
   build:
     name: Build
     runs-on: macos-latest
+    strategy:
+      matrix:
+        target: [iphoneos, iphonesimulator]
     steps:
     - name: Checkout ${{ github.repository }}
       uses: actions/checkout@v4.2.2
@@ -20,6 +23,13 @@ jobs:
       run: sudo xcode-select -s '/Applications/Xcode_16.2.app/Contents/Developer'
     - name: Install iOS platforms
       run: xcodebuild -downloadPlatform iOS -buildVersion 18.2
+    - name: Install ccache
+      run: brew install ccache
+    - name: Cache Ccache directory
+      uses: actions/cache@v4.2.2
+      with:
+        key: ccache
+        path: ${{ github.workspace }}/.ccache
     - name: Install depot_tools
       run: |
         git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
@@ -29,24 +39,21 @@ jobs:
       run: fetch --no-history ios
     - name: Copy .setup-gn
       run: cp -r ./src/.setup-gn ./chromium/
-    - name: Archive source
-      run: 7z a -bsp2 -mx9 -t7z chromium.7z chromium
-    - name: Upload source artifact
-      uses: actions/upload-artifact@v4.6.1
-      with:
-        name: chromium
-        path: chromium.7z
-        retention-days: 1
-        compression-level: 0
-    - name: Install ccache
-      run: brew install ccache
     - name: Set up the build
       working-directory: ${{ github.workspace }}/chromium/src
       run: python ios/build/tools/setup-gn.py
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
-      run: autoninja -C out/Debug-iphonesimulator web_view_signed_bundle
+      run: autoninja -C out/Debug-${{ matrix.target }} web_view_signed_bundle
       env:
-        SCCACHE_GHA_ENABLED: "true"
         CCACHE_BASEDIR: ${{ github.workspace }}/chromium
+        CCACHE_DIR: ${{ github.workspace }}/.ccache
         CCACHE_SLOPPINESS: time_macros
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4.6.1
+      with:
+        name: ChromeWebView.framework
+        path: ChromeWebView.framework
+        if-no-files-found: error
+        retention-days: 1
+        compression-level: 0
