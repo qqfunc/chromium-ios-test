@@ -15,7 +15,8 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        target: [iphoneos, iphonesimulator]
+        target: [iphonesimulator]
+      fail-fast: false
     steps:
     - name: Checkout ${{ github.repository }}
       uses: actions/checkout@v4.2.2
@@ -44,7 +45,7 @@ jobs:
       run: python ios/build/tools/setup-gn.py
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
-      run: autoninja -C out/Debug-${{ matrix.target }} web_view_signed_bundle
+      run: autoninja -C out/Release-${{ matrix.target }} web_view_signed_bundle
       env:
         CCACHE_BASEDIR: ${{ github.workspace }}/chromium
         CCACHE_DIR: ${{ github.workspace }}/.ccache
