@@ -26,8 +26,8 @@ jobs:
       run: xcodebuild -downloadPlatform iOS -buildVersion 18.2
     - name: Install ccache
       run: brew install ccache
-    - name: Cache Ccache directory
-      uses: actions/cache@v4.2.2
+    - name: Restore Ccache directory
+      uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
         path: ${{ github.workspace }}/.ccache
@@ -50,7 +50,7 @@ jobs:
         CCACHE_BASEDIR: ${{ github.workspace }}/chromium
         CCACHE_DIR: ${{ github.workspace }}/.ccache
         CCACHE_SLOPPINESS: time_macros
-      timeout-minutes: 300
+      timeout-minutes: 30
     - name: Upload build artifact
       uses: actions/upload-artifact@v4.6.1
       with:
@@ -59,3 +59,9 @@ jobs:
         if-no-files-found: error
         retention-days: 1
         compression-level: 0
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: ${{ github.workspace }}/.ccache
