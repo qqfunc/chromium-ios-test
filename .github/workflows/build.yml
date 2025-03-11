@@ -28,7 +28,7 @@ jobs:
     - name: Cache Ccache directory
       uses: actions/cache@v4.2.2
       with:
-        key: ccache
+        key: ccache-${{ matrix.target }}
         path: ${{ github.workspace }}/.ccache
     - name: Install depot_tools
       run: |
@@ -52,7 +52,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v4.6.1
       with:
-        name: ChromeWebView.framework
+        name: ChromeWebView-${{ matrix.target }}
         path: ChromeWebView.framework
         if-no-files-found: error
         retention-days: 1
