@@ -1,4 +1,5 @@
 [gn_args]
+is_official_build = true
 is_debug = false
 symbol_level = 0
 blink_symbol_level = 0
