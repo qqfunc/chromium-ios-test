@@ -22,12 +22,10 @@ jobs:
       uses: actions/checkout@v4.2.2
     - name: Select Xcode version
       run: sudo xcode-select -s '/Applications/Xcode_16.2.app/Contents/Developer'
-    - name: Install iOS platforms
-      run: xcodebuild -downloadPlatform iOS -buildVersion 18.2
     - name: Install ccache
       run: brew install ccache
     - name: Restore Ccache directory
-      uses: actions/cache/save@v4.2.2
+      uses: actions/cache/restore@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
         path: ${{ github.workspace }}/.ccache
@@ -50,7 +48,7 @@ jobs:
         CCACHE_BASEDIR: ${{ github.workspace }}/chromium
         CCACHE_DIR: ${{ github.workspace }}/.ccache
         CCACHE_SLOPPINESS: time_macros
-      timeout-minutes: 10
+      timeout-minutes: 30
     - name: Upload build artifact
       uses: actions/upload-artifact@v4.6.1
       with:
@@ -61,7 +59,70 @@ jobs:
         compression-level: 0
     - if: always()
       name: Sleep
-      run: sleep 0
+      run: sleep 1800
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: ${{ github.workspace }}/.ccache
+    - if: always()
+      name: Sleep
+      run: sleep 1800
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: ${{ github.workspace }}/.ccache
+    - if: always()
+      name: Sleep
+      run: sleep 1800
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: ${{ github.workspace }}/.ccache
+    - if: always()
+      name: Sleep
+      run: sleep 1800
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: ${{ github.workspace }}/.ccache
+    - if: always()
+      name: Sleep
+      run: sleep 1800
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: ${{ github.workspace }}/.ccache
+    - if: always()
+      name: Sleep
+      run: sleep 1800
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: ${{ github.workspace }}/.ccache
+    - if: always()
+      name: Sleep
+      run: sleep 1800
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: ${{ github.workspace }}/.ccache
+    - if: always()
+      name: Sleep
+      run: sleep 1800
     - if: always()
       name: Save Ccache directory
       uses: actions/cache/save@v4.2.2
