@@ -61,7 +61,7 @@ jobs:
         compression-level: 0
     - if: always()
       name: Sleep
-      run: sleep 600
+      run: sleep 0
     - if: always()
       name: Save Ccache directory
       uses: actions/cache/save@v4.2.2
