@@ -43,7 +43,7 @@ jobs:
       run: python ios/build/tools/setup-gn.py
     - name: Build Chromium
       working-directory: ${{ github.workspace }}/chromium/src
-      run: autoninja -C out/Release-${{ matrix.target }} web_view_signed_bundle
+      run: autoninja -C out/Release-${{ matrix.target }} web_view_signed_bundle -j 1
       env:
         CCACHE_BASEDIR: ${{ github.workspace }}/chromium
         CCACHE_DIR: ${{ github.workspace }}/.ccache
@@ -57,63 +57,6 @@ jobs:
         if-no-files-found: error
         retention-days: 1
         compression-level: 0
-    - if: always()
-      name: Sleep
-      run: sleep 1800
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-    - if: always()
-      name: Sleep
-      run: sleep 1800
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-    - if: always()
-      name: Sleep
-      run: sleep 1800
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-    - if: always()
-      name: Sleep
-      run: sleep 1800
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-    - if: always()
-      name: Sleep
-      run: sleep 1800
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-    - if: always()
-      name: Sleep
-      run: sleep 1800
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-    - if: always()
-      name: Sleep
-      run: sleep 1800
     - if: always()
       name: Save Ccache directory
       uses: actions/cache/save@v4.2.2
