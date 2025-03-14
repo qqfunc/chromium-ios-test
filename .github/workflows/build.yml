@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches: [main]
-  pull_request:
+  pull_request:include-hidden-files: true
     branches: [main]
 
 env:
@@ -28,7 +28,7 @@ jobs:
       uses: actions/cache/restore@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: .ccache
+        path: ccache
     - run: ls -a
     - name: Install depot_tools
       run: |
@@ -47,7 +47,7 @@ jobs:
       run: autoninja -C out/Release-${{ matrix.target }} web_view_signed_bundle
       env:
         CCACHE_BASEDIR: ${{ github.workspace }}/chromium
-        CCACHE_DIR: ${{ github.workspace }}/.ccache
+        CCACHE_DIR: ${{ github.workspace }}/ccache
         CCACHE_SLOPPINESS: time_macros
       timeout-minutes: 10
     - name: Upload build artifact
@@ -63,13 +63,13 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: .ccache
+        path: ccache
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache/
+        path: ccache
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -80,13 +80,13 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: .ccache
+        path: ccache
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache/
+        path: ccache
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -97,13 +97,13 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: .ccache
+        path: ccache
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache/
+        path: ccache
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -114,13 +114,13 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: .ccache
+        path: ccache
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache/
+        path: ccache
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -131,13 +131,13 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: .ccache
+        path: ccache
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache/
+        path: ccache
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -148,13 +148,13 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
+        path: ${{ github.workspace }}/ccache
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache/
+        path: ccache
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -165,12 +165,12 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: .ccache
+        path: ccache
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache/
+        path: ccache
         if-no-files-found: error
         retention-days: 1
