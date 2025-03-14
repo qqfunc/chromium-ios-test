@@ -29,6 +29,7 @@ jobs:
       with:
         key: ccache-${{ matrix.target }}
         path: ${{ github.workspace }}/.ccache
+    - run: ls -a
     - name: Install depot_tools
       run: |
         git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
