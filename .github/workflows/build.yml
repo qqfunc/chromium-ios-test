@@ -69,7 +69,7 @@ jobs:
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache
+        path: .ccache/
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -86,7 +86,7 @@ jobs:
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache
+        path: .ccache/
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -103,7 +103,7 @@ jobs:
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache
+        path: .ccache/
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -120,7 +120,7 @@ jobs:
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache
+        path: .ccache/
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -137,7 +137,7 @@ jobs:
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache
+        path: .ccache/
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -154,7 +154,7 @@ jobs:
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache
+        path: .ccache/
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -171,6 +171,6 @@ jobs:
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: .ccache
+        path: .ccache/
         if-no-files-found: error
         retention-days: 1
