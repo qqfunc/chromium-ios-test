@@ -29,7 +29,6 @@ jobs:
       with:
         key: ccache-${{ matrix.target }}
         path: ccache
-    - run: ls -a
     - name: Install depot_tools
       run: |
         git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
@@ -58,20 +57,26 @@ jobs:
         if-no-files-found: error
         retention-days: 1
         compression-level: 0
+        include-hidden-files: true
     - if: always()
       name: Save Ccache directory
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: ccache
+        path: |
+          ccache
+          !ccache/tmp
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: ccache
+        path: |
+          ccache
+          !ccache/tmp
         if-no-files-found: error
         retention-days: 1
+        include-hidden-files: true
     - if: always()
       name: Sleep
       run: sleep 300
@@ -80,15 +85,20 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: ccache
+        path: |
+          ccache
+          !ccache/tmp
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: ccache
+        path: |
+          ccache
+          !ccache/tmp
         if-no-files-found: error
         retention-days: 1
+        include-hidden-files: true
     - if: always()
       name: Sleep
       run: sleep 300
@@ -97,15 +107,20 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: ccache
+        path: |
+          ccache
+          !ccache/tmp
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: ccache
+        path: |
+          ccache
+          !ccache/tmp
         if-no-files-found: error
         retention-days: 1
+        include-hidden-files: true
     - if: always()
       name: Sleep
       run: sleep 300
@@ -114,15 +129,20 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: ccache
+        path: |
+          ccache
+          !ccache/tmp
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: ccache
+        path: |
+          ccache
+          !ccache/tmp
         if-no-files-found: error
         retention-days: 1
+        include-hidden-files: true
     - if: always()
       name: Sleep
       run: sleep 300
@@ -131,46 +151,20 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: ccache
+        path: |
+          ccache
+          !ccache/tmp
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: ccache
+        path: |
+          ccache
+          !ccache/tmp
         if-no-files-found: error
         retention-days: 1
+        include-hidden-files: true
     - if: always()
       name: Sleep
       run: sleep 300
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/ccache
-    - if: always()
-      name: Upload ccache artifact
-      uses: actions/upload-artifact@v4.6.1
-      with:
-        name: ccache-${{ matrix.target }}
-        path: ccache
-        if-no-files-found: error
-        retention-days: 1
-    - if: always()
-      name: Sleep
-      run: sleep 300
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ccache
-    - if: always()
-      name: Upload ccache artifact
-      uses: actions/upload-artifact@v4.6.1
-      with:
-        name: ccache-${{ matrix.target }}
-        path: ccache
-        if-no-files-found: error
-        retention-days: 1
