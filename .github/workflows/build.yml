@@ -28,7 +28,7 @@ jobs:
       uses: actions/cache/restore@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
+        path: .ccache
     - run: ls -a
     - name: Install depot_tools
       run: |
@@ -63,13 +63,81 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
+        path: .ccache
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
+        path: .ccache
+        if-no-files-found: error
+        retention-days: 1
+    - if: always()
+      name: Sleep
+      run: sleep 300
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: .ccache
+    - if: always()
+      name: Upload ccache artifact
+      uses: actions/upload-artifact@v4.6.1
+      with:
+        name: ccache-${{ matrix.target }}
+        path: .ccache
+        if-no-files-found: error
+        retention-days: 1
+    - if: always()
+      name: Sleep
+      run: sleep 300
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: .ccache
+    - if: always()
+      name: Upload ccache artifact
+      uses: actions/upload-artifact@v4.6.1
+      with:
+        name: ccache-${{ matrix.target }}
+        path: .ccache
+        if-no-files-found: error
+        retention-days: 1
+    - if: always()
+      name: Sleep
+      run: sleep 300
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: .ccache
+    - if: always()
+      name: Upload ccache artifact
+      uses: actions/upload-artifact@v4.6.1
+      with:
+        name: ccache-${{ matrix.target }}
+        path: .ccache
+        if-no-files-found: error
+        retention-days: 1
+    - if: always()
+      name: Sleep
+      run: sleep 300
+    - if: always()
+      name: Save Ccache directory
+      uses: actions/cache/save@v4.2.2
+      with:
+        key: ccache-${{ matrix.target }}
+        path: .ccache
+    - if: always()
+      name: Upload ccache artifact
+      uses: actions/upload-artifact@v4.6.1
+      with:
+        name: ccache-${{ matrix.target }}
+        path: .ccache
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -86,7 +154,7 @@ jobs:
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
+        path: .ccache
         if-no-files-found: error
         retention-days: 1
     - if: always()
@@ -97,80 +165,12 @@ jobs:
       uses: actions/cache/save@v4.2.2
       with:
         key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
+        path: .ccache
     - if: always()
       name: Upload ccache artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-        if-no-files-found: error
-        retention-days: 1
-    - if: always()
-      name: Sleep
-      run: sleep 300
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-    - if: always()
-      name: Upload ccache artifact
-      uses: actions/upload-artifact@v4.6.1
-      with:
-        name: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-        if-no-files-found: error
-        retention-days: 1
-    - if: always()
-      name: Sleep
-      run: sleep 300
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-    - if: always()
-      name: Upload ccache artifact
-      uses: actions/upload-artifact@v4.6.1
-      with:
-        name: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-        if-no-files-found: error
-        retention-days: 1
-    - if: always()
-      name: Sleep
-      run: sleep 300
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-    - if: always()
-      name: Upload ccache artifact
-      uses: actions/upload-artifact@v4.6.1
-      with:
-        name: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-        if-no-files-found: error
-        retention-days: 1
-    - if: always()
-      name: Sleep
-      run: sleep 300
-    - if: always()
-      name: Save Ccache directory
-      uses: actions/cache/save@v4.2.2
-      with:
-        key: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
-    - if: always()
-      name: Upload ccache artifact
-      uses: actions/upload-artifact@v4.6.1
-      with:
-        name: ccache-${{ matrix.target }}
-        path: ${{ github.workspace }}/.ccache
+        path: .ccache
         if-no-files-found: error
         retention-days: 1
