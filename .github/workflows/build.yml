@@ -107,4 +107,5 @@ jobs:
           !ccache/tmp
         if-no-files-found: error
         retention-days: 1
+        overwrite: true
         include-hidden-files: true
