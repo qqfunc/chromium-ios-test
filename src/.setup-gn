@@ -1,5 +1,4 @@
 [gn_args]
-is_official_build = true
 is_debug = false
 symbol_level = 0
 blink_symbol_level = 0
@@ -8,3 +7,6 @@ cc_wrapper = "ccache"
 use_blink = true
 cppgc_enable_caged_heap = false
 v8_enable_pointer_compression = false
+target_cpu = "arm64"
+ios_content_shell_bundle_identifier = "com.qqfunc.chromium-content-shell"
+ios_chromium_bundle_id = "com.qqfunc.chromium"
