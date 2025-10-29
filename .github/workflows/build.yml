@@ -33,7 +33,6 @@ jobs:
       uses: actions/cache/restore@v4.3.0
       with:
         key: ccache-iphonesimulator
-        restore-keys: ccache-
         path: ccache
     - if: ${{ matrix.number != 1 }}
       name: Download Ccache Artifact
