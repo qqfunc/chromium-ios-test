@@ -1,10 +1,11 @@
 name: Build
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 env:
   FORCE_COLOR: 'true'
@@ -32,6 +33,7 @@ jobs:
       uses: actions/cache/restore@v4.3.0
       with:
         key: ccache-iphonesimulator
+        restore-keys: ccache-iphonesimulator
         path: ccache
     - if: ${{ matrix.number != 1 }}
       name: Download Ccache Artifact
