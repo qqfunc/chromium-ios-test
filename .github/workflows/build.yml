@@ -28,18 +28,6 @@ jobs:
       run: xcodebuild -downloadPlatform iOS
     - name: Install Ccache
       run: brew install ccache
-    - if: ${{ matrix.number == 1 }}
-      name: Restore Ccache Directory
-      uses: actions/cache/restore@v4.3.0
-      with:
-        key: ccache-iphonesimulator
-        path: ccache
-    - if: ${{ matrix.number != 1 }}
-      name: Download Ccache Artifact
-      uses: actions/download-artifact@v6.0.0
-      with:
-        name: ccache-iphonesimulator
-        path: ccache
     - name: Install depot_tools
       run: |
         git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
@@ -47,6 +35,23 @@ jobs:
     - name: Fetch iOS code
       working-directory: chromium
       run: fetch --no-history ios
+    - id: rev
+      name: Get Git Revision
+      working-directory: chromium/src
+      run: echo "rev=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+    - if: ${{ matrix.number == 1 }}
+      name: Restore Ccache Directory
+      uses: actions/cache/restore@v4.3.0
+      with:
+        key: ccache-iphonesimulator-${{ steps.rev.outputs.rev }}
+        path: ccache
+        restore-keys: ccache-iphonesimulator
+    - if: ${{ matrix.number != 1 }}
+      name: Download Ccache Artifact
+      uses: actions/download-artifact@v6.0.0
+      with:
+        name: ccache-iphonesimulator
+        path: ccache
     - name: Copy .setup-gn
       run: cp -r ./src/.setup-gn ./chromium/
     - name: Set up the build
@@ -75,7 +80,7 @@ jobs:
       name: Save Ccache Directory
       uses: actions/cache/save@v4.3.0
       with:
-        key: ccache-iphonesimulator
+        key: ccache-iphonesimulator-${{ steps.rev.outputs.rev }}
         path: |
           ccache
           !ccache/tmp
